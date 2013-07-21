@@ -4,6 +4,7 @@
 [core]
     editor = vim
     filemode = false
+    excludesfile = /opt/boxen/config/git/gitignore
 [alias]
     co = checkout
     br = branch
@@ -24,3 +25,9 @@
     added = green
     changed = yellow
     untracked = red
+
+[hub]
+protocol = https
+
+[credential]
+helper = /opt/boxen/bin/boxen-git-credential
