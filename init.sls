@@ -3,5 +3,5 @@
 #
 
 include:
-  - chris_git.install
-  - chris_git.config
+  - local_git.install
+  - local_git.config
