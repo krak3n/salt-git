@@ -43,12 +43,12 @@
   gem:
     - installed
     - require:
-      pkg: .git
-      pkg: .rubygems
+      - pkg: .git
+      - pkg: .rubygems
 
 .hub:
   gem:
     - installed
     - require:
-      pkg: .git
-      pkg: .rubygems
+      - pkg: .git
+      - pkg: .rubygems
