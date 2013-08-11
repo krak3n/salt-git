@@ -1,48 +1,54 @@
+#!stateconf yaml . jinja
+
 #
-# Install Git
+# git.install
+#
+# Install Git, Git-Flow, Git-Up & Hub
 #
 
-# Install python software properties
-local_git_python_software_properties_install:
+# Dependencies
+
+.python-software-properties:
   pkg:
     - installed
-    - name: python-software-properties
 
-# Add git PPA to always install the latest stable git
-local_git_ppa:
+.rubygems:
+  pkg:
+    - installed
+
+.git-ppa:
   pkgrepo:
     - managed
-    - ppa: ppa:git-core/ppa
-
-# Install Git
-local_git_install:
-  pkg:
-    - installed
-    - name: git
+    - ppa: git-core/ppa
     - require:
-      - pkgrepo: local_git_ppa
+      - pkg: .python-software-properties
 
-#
-# Other handy git addons
-#
+# Packages
 
-local_git_rubygems_install:
+.git:
   pkg:
     - installed
-    - name: rubygems
+    - require:
+      - pkgrepo: .git-ppa
 
-# Gitup
-'git-up':
+.git-flow:
+  pkg:
+    - installed
+    - require:
+      - pkg: .git
+
+# Gems
+
+.git-up:
   gem:
     - installed
     - require:
-      - pkg: local_git_install
-      - pkg: local_git_rubygems_install
+      pkg: .git
+      pkg: .rubygems
 
-# Hub
-'hub':
+.hub:
   gem:
     - installed
     - require:
-      - pkg: local_git_install
-      - pkg: local_git_rubygems_install
+      pkg: .git
+      pkg: .rubygems
